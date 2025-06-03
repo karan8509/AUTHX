@@ -1,79 +1,76 @@
-AUTHX - Secure Authentication System
+# AUTHX – Secure Authentication System
 
-The AUTHX system is a robust and scalable authentication platform designed to ensure secure user management. It incorporates multiple modern technologies like Node.js, Express.js, and MongoDB to deliver a seamless and secure experience for both users and administrators. Below are the key features and technical details:
+**AUTHX** is a robust and scalable authentication platform built with Node.js, Express.js, and MongoDB. It provides a secure and efficient way to handle user signup, login, and access control through JWT-based authentication.
 
-Key Features:
-User Signup:
+---
 
-Users can create accounts securely with email and password.
+## 🚀 Key Features
 
-Passwords are hashed using bcrypt, ensuring sensitive information is never stored in plain text.
+### ✅ User Signup
+- Secure account creation with email and password.
+- Passwords are hashed using **bcrypt**.
+- Input validation with **Joi** (e.g., valid email format, strong password).
 
-Input validation is implemented using Joi, ensuring that all required fields (e.g., email format, password strength) meet predefined criteria.
+### 🔐 User Login
+- Secure login with credential verification.
+- Issues a **JWT (JSON Web Token)** upon successful login.
+- JWT is used to authenticate future requests (stateless session).
 
-User Login:
+### 🔄 Token-Based Authentication
+- Stateless authentication using JWT.
+- Tokens are stored securely on the client side (e.g., HTTP-only cookies or `localStorage`).
+- Protected routes require valid JWT.
 
-After successful signup, users can log in to the platform.
+### 🚪 User Logout
+- Logout function invalidates tokens and ends the user session.
 
-User credentials are verified, and if they match the records, a JWT (JSON Web Token) is generated and returned.
+### 🌐 RESTful API Endpoints
+- Designed with REST principles for scalability and clarity.
+- Uses standard HTTP methods: `GET`, `POST`, `PUT`, `DELETE`.
 
-The JWT serves as the authentication token for subsequent requests, ensuring a stateless authentication model.
+### 🛡 Input Validation
+- Validates and sanitizes request data with **Joi**.
+- Protects against malformed data and injection attacks.
 
-Token-based Authentication:
+### ⚠️ Structured Error Handling
+- Consistent error messages and HTTP status codes.
+- Simplifies debugging and improves client-side integration.
 
-Implemented JWT (JSON Web Token) for secure and stateless user authentication.
+---
 
-Tokens are issued after login and are used for validating requests in protected routes.
+## 🧰 Technologies Used
 
-JWT is stored securely on the client side (e.g., in an HTTP-only cookie or localStorage).
+- **Node.js** – Runtime environment for server-side JavaScript.
+- **Express.js** – Lightweight framework for building APIs.
+- **MongoDB** – NoSQL database for secure data storage.
+- **bcrypt** – For secure password hashing.
+- **JWT (jsonwebtoken)** – Stateless authentication via token.
+- **Joi** – Input validation schema.
+- **Middleware** – For authentication, validation, and error handling.
 
-User Logout:
+---
 
-Logout functionality is provided to destroy the session and invalidate the authentication token, ensuring that users can't make unauthorized requests after logout.
+## 🔒 Security Best Practices
 
-RESTful APIs:
+- **Password Hashing**: Uses bcrypt to hash passwords, ensuring they are never stored in plain text.
+- **JWT Authentication**: Stateless tokens prevent session hijacking and simplify session management.
+- **HTTPS (in production)**: All data is transmitted securely over SSL.
 
-Developed structured RESTful APIs to handle authentication and user management.
+---
 
-The APIs follow the standard HTTP methods (GET, POST, PUT, DELETE) and are designed to be intuitive and easily extendable.
+## 📦 API Endpoints
 
-Input Validation:
+| Method | Endpoint               | Description              |
+|--------|------------------------|--------------------------|
+| POST   | `/api/auth/signup`     | Register a new user      |
+| POST   | `/api/auth/login`      | Login and receive token  |
+| GET    | `/api/user/profile`    | Access user profile (Protected) |
 
-Used Joi to validate the data for each request, ensuring all input is sanitized and meets required criteria.
+---
 
-Prevents issues like SQL injection and ensures the integrity of incoming data.
+## 👨‍💻 Author
 
-Structured Error Handling:
+Developed by [Karan Kashayp]
 
-Custom error handling mechanism is implemented to catch and handle errors in a consistent manner.
+---
 
-Responses are returned with appropriate status codes and informative messages for easy debugging and troubleshooting.
-
-Technologies Used:
-Node.js: Backend runtime environment.
-
-Express.js: Framework used for building RESTful APIs.
-
-MongoDB: Database to store user data (securely hashed passwords).
-
-bcrypt: Used for hashing passwords and comparing them during login.
-
-JWT: Token-based authentication system to manage sessions.
-
-Joi: Input validation library for data integrity.
-
-Middleware: Used for error handling, authentication, and request validation.
-
-Security Considerations:
-Password Hashing: Using bcrypt ensures that even if the database is compromised, user passwords cannot be easily deciphered.
-
-JWT Authentication: Stateless tokens improve security by reducing the need for server-side sessions and preventing session hijacking.
-
-HTTPS: For secure communication between the client and server (important when deploying to production).
-
-Usage:
-Signup: POST /api/auth/signup
-
-Login: POST /api/auth/login
-
-Protected Routes (Require JWT Token): GET /api/user/profile
