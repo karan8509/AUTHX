@@ -70,7 +70,7 @@
 
 ## 👨‍💻 Author
 
-Developed by [Karan Kashayp]
+Developed by [Karan Kashyap]
 
 ---
 
